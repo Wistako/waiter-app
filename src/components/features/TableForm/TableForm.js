@@ -41,7 +41,9 @@ const TableForm = ({table}) => {
       setMaxPeopleAmount(e.target.value);
     }
   }
-
+  const hadnleSubmit = (e) => {
+    e.preventDefault();
+  }
   return(  
   <form>
     <div className='row'>
