@@ -10,7 +10,7 @@ import NavBar from "./components/views/NavBar/NavBar";
 function App() {
   const dispatch = useDispatch();
   useEffect( () => dispatch(fetchTables()), [dispatch])
-
+  
   return (
     <main>
       <Container>

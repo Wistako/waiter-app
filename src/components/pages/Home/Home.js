@@ -5,7 +5,6 @@ import Table from '../../views/Table/Table';
 
 const Home = () => {
   const tables = useSelector(state => getAllTables(state) );
-  console.log(tables);
   return (
     <div className={styles.home}>
       <h1 className='mb-5 mt-3'>All tables</h1>
