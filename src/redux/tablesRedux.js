@@ -1,9 +1,9 @@
-import shortid from "shortid";
 import { startRequest, endRequest } from './loadingRedux';
 
 // selectors
 export const getAllTables = ({ tables }) => tables;
 export const getTableById = ({ tables }, tableId) => tables.find(table => table.id === tableId);
+export const getTablesLength = ({ tables }) => tables.length;
 
 // action name creator
 const createActionName = name => `app/table/${name}`;
@@ -15,14 +15,15 @@ const ADD_TABLE = createActionName('ADD_TABLE');
 export const fetchTables = () => {
   return (dispatch) => {
     fetch('http://localhost:3131/api/tables')
-      .then(res => res.json())
-      .then(tables => dispatch(updateTables(tables)))
+    .then(res => res.json())
+    .then(tables => dispatch(updateTables(tables)))
   }
 }
+
 export const updateTables = payload => ({ payload, type: UPDATE_TABLES });
+
 export const updateTable = payload => ({ payload, type: UPDATE_TABLE });
 export const updateTableRequest = (upTable) => {
-  console.log('upTable' ,upTable);
   return (dispatch) => {
     dispatch(startRequest());
     const options = {
@@ -38,11 +39,28 @@ export const updateTableRequest = (upTable) => {
       .then(() => dispatch(endRequest()))
   }
 }
+export const addTable = payload => ({ payload, type: ADD_TABLE });
+export const addTableRequest = (newTable) => {
+  return (dispatch) => {
+    dispatch(startRequest());
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newTable),
+    };
+    fetch('http://localhost:3131/api/tables', options)
+      .then(res => res.json())
+      .then(() => dispatch(addTable(newTable)))
+      .then(() => dispatch(endRequest()))
+  }
+}
 // reducer
 const tableReducer = (statePart = [], action) => {
   switch (action.type) {
     case ADD_TABLE:
-      return [...statePart, {...action.payload, id: shortid()}]
+      return [...statePart, {...action.payload}]
     case UPDATE_TABLES:
       return[...action.payload]
     case UPDATE_TABLE:

@@ -1,12 +1,16 @@
 import { useDispatch, useSelector} from "react-redux";
 import { useEffect, useState } from "react";
-import { updateTableRequest } from "../../../redux/tablesRedux";
+import { useNavigate } from "react-router-dom";
+import { addTableRequest, getTablesLength, updateTableRequest } from "../../../redux/tablesRedux";
 import { Spinner } from "react-bootstrap";
 import { getLoading } from "../../../redux/loadingRedux";
+import styles from './TableForm.module.scss';
 
-const TableForm = ({table }) => {
+const TableForm = ({table, formForAdd, id}) => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const loading = useSelector(getLoading);
+  const tablesLenght = useSelector(state => getTablesLength(state));
   const [status, setStatus] = useState(table.status);
   const [peopleAmount, setPeopleAmount] = useState(table.peopleAmount);
   const [maxPeopleAmount, setMaxPeopleAmount] = useState(table.maxPeopleAmount);
@@ -50,7 +54,7 @@ const TableForm = ({table }) => {
       }
     }
   }
-  const handleSubmit = (e) => {
+  const handleSubmitUpdate = (e) => {
     e.preventDefault();
     const tableData = {
       id: table.id,
@@ -61,9 +65,21 @@ const TableForm = ({table }) => {
     };
     dispatch(updateTableRequest(tableData))
   }
+  const handleSubmitAdd = (e) => {
+    e.preventDefault();
+    const tableData = {
+      id: (tablesLenght + 1).toString(),
+      status,
+      peopleAmount,
+      maxPeopleAmount,
+      bill
+    };
+    dispatch(addTableRequest(tableData));
+    navigate('/');
+  }
   if(loading) return(<Spinner />)
   return(
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={ formForAdd ? handleSubmitAdd : handleSubmitUpdate } className={styles.wrapper}>
         <div className='row'>
           <p className='col-2'>Status: </p>
           <select className='col-2' defaultValue={status} onChange={handleStatusChange}>

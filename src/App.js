@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import Home from "./components/pages/Home/Home";
 import TablePage from "./components/pages/TablePage/TablePage";
 import NavBar from "./components/views/NavBar/NavBar";
+import AddTable from "./components/pages/AddTable/AddTable";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/table/:id" element={<TablePage />} />
+          <Route path="/table/add" element={<AddTable />} />
           <Route path='*' element={<Home />} />
         </Routes>
       </Container>

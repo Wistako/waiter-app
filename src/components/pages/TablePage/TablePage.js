@@ -8,7 +8,6 @@ const TablePage = () => {
   const { id } = useParams();
   
   const table = useSelector(state => getTableById(state, id));
-  console.log(table);
 
   if(!table) return <Navigate to='/tables' />
   return (

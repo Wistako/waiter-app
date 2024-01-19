@@ -1,5 +1,6 @@
 
 import { useNavigate } from 'react-router-dom';
+import ButtonPrim from '../../common/ButtonPrim/ButtonPrim';
 
 const Table = ({id, status}) => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ const Table = ({id, status}) => {
     <h2 className='col-3'>{'Table ' + id}</h2>
     <p className='col-3 m-0'><span className='fw-bold'>Status: </span>{status}</p>
     <div className='col-6 text-end'>
-      <button className='btn btn-primary' onClick={handleClick}>Show more</button>
+      <ButtonPrim onClick={handleClick}>Show more</ButtonPrim>
     </div>
   </div>
   );

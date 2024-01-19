@@ -57,6 +57,34 @@
       "status": "free",
       "peopleAmount": "0",
       "maxPeopleAmount": "4"
+    },
+    {
+      "id": "[object Undefined]",
+      "status": "free",
+      "peopleAmount": "0",
+      "maxPeopleAmount": "4",
+      "bill": 0
+    },
+    {
+      "id": "11",
+      "status": "free",
+      "peopleAmount": "0",
+      "maxPeopleAmount": "4",
+      "bill": 0
+    },
+    {
+      "id": "12",
+      "status": "reserved",
+      "peopleAmount": "0",
+      "maxPeopleAmount": "4",
+      "bill": 0
+    },
+    {
+      "id": "13",
+      "status": "free",
+      "peopleAmount": "0",
+      "maxPeopleAmount": "4",
+      "bill": 0
     }
   ]
 }
