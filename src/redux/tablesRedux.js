@@ -5,11 +5,13 @@ export const getAllTables = ({ tables }) => tables;
 export const getTableById = ({ tables }, tableId) => tables.find(table => table.id === tableId);
 export const getTablesLength = ({ tables }) => tables.length;
 
+
 // action name creator
 const createActionName = name => `app/table/${name}`;
 const UPDATE_TABLES = createActionName('UPDATE_TABLES');
 const UPDATE_TABLE = createActionName('UPDATE_TABLE');
 const ADD_TABLE = createActionName('ADD_TABLE');
+const REMOVE_TABLE = createActionName('REMOVE_TABLE');
 
 // action 
 export const fetchTables = () => {
@@ -56,6 +58,24 @@ export const addTableRequest = (newTable) => {
       .then(() => dispatch(endRequest()))
   }
 }
+
+export const removeTable = payload => ({payload, type: REMOVE_TABLE });
+export const removeTableRequest = ({id}) => {
+  console.log(id);
+  return (dispatch) => {
+    dispatch(startRequest());
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    fetch('http://localhost:3131/api/tables/' + id, options)
+      .then(res => res.json())
+      .then(() => dispatch(removeTable({id})))
+      .then(() => dispatch(endRequest()))
+  }
+}
 // reducer
 const tableReducer = (statePart = [], action) => {
   switch (action.type) {
@@ -65,6 +85,8 @@ const tableReducer = (statePart = [], action) => {
       return[...action.payload]
     case UPDATE_TABLE:
       return statePart.map(table => table.id === action.payload.id ? action.payload : table)
+    case REMOVE_TABLE:
+      return statePart.filter(table => table.id !== action.payload.id)
     default:
       return statePart;
   }

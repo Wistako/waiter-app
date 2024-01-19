@@ -2,10 +2,9 @@
   "tables": [
     {
       "id": "1",
-      "status": "reserved",
-      "peopleAmount": "2",
-      "maxPeopleAmount": "5",
-      "bill": 0
+      "status": "free",
+      "peopleAmount": "3",
+      "maxPeopleAmount": "4"
     },
     {
       "id": "2",
@@ -29,58 +28,6 @@
     },
     {
       "id": "5",
-      "status": "free",
-      "peopleAmount": "0",
-      "maxPeopleAmount": "4"
-    },
-    {
-      "id": "6",
-      "status": "busy",
-      "peopleAmount": "0",
-      "maxPeopleAmount": "4",
-      "bill": "32"
-    },
-    {
-      "id": "7",
-      "status": "free",
-      "peopleAmount": "0",
-      "maxPeopleAmount": "4"
-    },
-    {
-      "id": "8",
-      "status": "free",
-      "peopleAmount": "0",
-      "maxPeopleAmount": "4"
-    },
-    {
-      "id": "9",
-      "status": "free",
-      "peopleAmount": "0",
-      "maxPeopleAmount": "4"
-    },
-    {
-      "id": "[object Undefined]",
-      "status": "free",
-      "peopleAmount": "0",
-      "maxPeopleAmount": "4",
-      "bill": 0
-    },
-    {
-      "id": "11",
-      "status": "free",
-      "peopleAmount": "0",
-      "maxPeopleAmount": "4",
-      "bill": 0
-    },
-    {
-      "id": "12",
-      "status": "reserved",
-      "peopleAmount": "0",
-      "maxPeopleAmount": "4",
-      "bill": 0
-    },
-    {
-      "id": "13",
       "status": "free",
       "peopleAmount": "0",
       "maxPeopleAmount": "4",
