@@ -1,4 +1,5 @@
 import { startRequest, endRequest } from './loadingRedux';
+import { API_URL } from '../config';
 
 // selectors
 export const getAllTables = ({ tables }) => tables;
@@ -16,7 +17,7 @@ const REMOVE_TABLE = createActionName('REMOVE_TABLE');
 // action 
 export const fetchTables = () => {
   return (dispatch) => {
-    fetch('http://localhost:3131/api/tables')
+    fetch(API_URL + '/tables')
     .then(res => res.json())
     .then(tables => dispatch(updateTables(tables)))
   }
@@ -35,7 +36,7 @@ export const updateTableRequest = (upTable) => {
       },
       body: JSON.stringify(upTable),
     };
-    fetch('http://localhost:3131/api/tables/' + upTable.id, options)
+    fetch(API_URL + 'tables/' + upTable.id, options)
       .then(res => res.json())
       .then(() => dispatch(updateTable(upTable)))
       .then(() => dispatch(endRequest()))
@@ -52,7 +53,7 @@ export const addTableRequest = (newTable) => {
       },
       body: JSON.stringify(newTable),
     };
-    fetch('http://localhost:3131/api/tables', options)
+    fetch(API_URL + '/tables', options)
       .then(res => res.json())
       .then(() => dispatch(addTable(newTable)))
       .then(() => dispatch(endRequest()))
@@ -70,7 +71,7 @@ export const removeTableRequest = ({id}) => {
         'Content-Type': 'application/json',
       },
     };
-    fetch('http://localhost:3131/api/tables/' + id, options)
+    fetch(API_URL + 'tables/' + id, options)
       .then(res => res.json())
       .then(() => dispatch(removeTable({id})))
       .then(() => dispatch(endRequest()))
