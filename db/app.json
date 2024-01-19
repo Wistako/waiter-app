@@ -4,7 +4,8 @@
       "id": "1",
       "status": "free",
       "peopleAmount": "3",
-      "maxPeopleAmount": "4"
+      "maxPeopleAmount": "4",
+      "bill": 0
     },
     {
       "id": "2",
@@ -28,7 +29,7 @@
     },
     {
       "id": "5",
-      "status": "free",
+      "status": "busy",
       "peopleAmount": "0",
       "maxPeopleAmount": "4",
       "bill": 0
